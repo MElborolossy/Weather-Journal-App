@@ -65,10 +65,10 @@ let updateUI = async () =>{
     const req = await fetch('/all');
     try {
         reqData = await req.json();
-        document.querySelector('#date').innerHTML = `Today is ${reqData.date}`; 
-        document.querySelector('#city').innerHTML = `At ${reqData.city},${reqData.country}`;
-        document.querySelector('#temp').innerHTML = `The Temperature is ${(reqData.temperature - 273).toFixed(2)}`;
-        document.querySelector('#content').innerHTML = `You feel ${reqData.userResponse}`;
+        document.querySelector('#date').innerHTML = `<b>Data:</b> ${reqData.date}`; 
+        document.querySelector('#city').innerHTML = `<b>City:</b> ${reqData.city},${reqData.country}`;
+        document.querySelector('#temp').innerHTML = `<b>Temperature</b>: ${(reqData.temperature - 273).toFixed(2)} <b>°C</b>`;
+        document.querySelector('#content').innerHTML = `<b>User feels</b>: ${reqData.userResponse}`;
         
     } catch (error){
         console.log('error', error);
