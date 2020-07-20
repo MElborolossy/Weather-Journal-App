@@ -13,13 +13,16 @@ let onClick = () => {
     // Elements
     const inputZipCode = document.querySelector('input').value;
     const userDataFeeling = document.querySelector('textarea').value;
-    
     getTempData(baseURL,inputZipCode,keyAPI)
     .then((data) =>{
-        postData('/weatherInfo', {date: newDate, temperature: data.main.temp, userResponse: userDataFeeling, city: data.name, country: data.sys.country});
-    })
-    .then( ()=>{
-        updateUI();
+        if(data.cod == 200){
+            postData('/weatherInfo', {date: newDate, temperature: data.main.temp, userResponse: userDataFeeling, city: data.name, country: data.sys.country})
+            .then( ()=>{
+                updateUI();
+            })
+        }else{
+            alert('Invalid zip code / city name entered\nPlease enter a right value.');
+        }
     })
 }
 
